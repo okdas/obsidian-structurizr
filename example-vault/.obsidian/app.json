@@ -1,0 +1,15 @@
+{
+  "spellcheck": true,
+  "alwaysUpdateLinks": true,
+  "newLinkFormat": "shortest",
+  "useMarkdownLinks": false,
+  "showLineNumber": false,
+  "readableLineLength": true,
+  "strictLineBreaks": false,
+  "showFrontmatter": true,
+  "livePreview": true,
+  "defaultViewMode": "preview",
+  "attachmentFolderPath": "",
+  "promptDelete": false,
+  "trashOption": "local"
+}

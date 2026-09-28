@@ -1,0 +1,25 @@
+.structurizr-embed {
+  display: block;
+  width: 100%;
+  margin: 1em 0;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-m);
+  overflow: hidden;
+  background: var(--background-primary);
+}
+.structurizr-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.45em;
+  padding: 0.45em 0.65em;
+  background: var(--background-secondary);
+}
+.structurizr-view-key { margin-right: auto; font-weight: var(--font-semibold); }
+.structurizr-toolbar input[type="range"] { width: min(9em, 30%); }
+.structurizr-toolbar button { min-height: 2em; }
+.structurizr-frame-wrap { width: 100%; }
+.structurizr-frame-wrap iframe { display: block; width: 100%; border: 0; background: var(--background-primary); }
+.structurizr-error { padding: 1em; color: var(--text-error); background: var(--background-secondary); }
+.structurizr-embed:fullscreen { background: var(--background-primary); overflow: auto; }
+.structurizr-embed:fullscreen iframe { height: calc(100vh - 3.5em) !important; }

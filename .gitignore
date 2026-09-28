@@ -1,0 +1,8 @@
+node_modules/
+/.pi/
+/.obsidian/
+example-vault/.obsidian/workspace.json
+/main.js
+example-vault/.obsidian/plugins/structurizr-diagrams/generated/
+*.zip
+!installable/structurizr-diagrams.zip

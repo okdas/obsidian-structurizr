@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - name: Install Graphviz and Structurizr CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y graphviz unzip
+          curl -fsSL https://github.com/structurizr/cli/releases/download/v2025.11.09/structurizr-cli.zip -o /tmp/structurizr-cli.zip
+          sudo unzip -q /tmp/structurizr-cli.zip -d /opt/structurizr-cli
+          sudo chmod +x /opt/structurizr-cli/structurizr.sh
+          echo "STRUCTURIZR_CLI=/opt/structurizr-cli/structurizr.sh" >> "$GITHUB_ENV"
+      - run: npm ci
+      - run: npx tsc --noEmit --target ES2020 --module commonjs --moduleResolution node --skipLibCheck main.ts
+      - run: npm test
+      - run: npm run build

@@ -1,0 +1,312 @@
+{
+  "configuration": {},
+  "description": "Order service architecture example",
+  "documentation": {},
+  "id": 0,
+  "model": {
+    "people": [
+      {
+        "description": "Places and tracks orders.",
+        "id": "1",
+        "name": "Customer",
+        "properties": {
+          "structurizr.dsl.identifier": "customer"
+        },
+        "relationships": [
+          {
+            "description": "Uses",
+            "destinationId": "3",
+            "id": "7",
+            "sourceId": "1",
+            "tags": "Relationship"
+          },
+          {
+            "description": "Uses",
+            "destinationId": "2",
+            "id": "8",
+            "linkedRelationshipId": "7",
+            "sourceId": "1"
+          }
+        ],
+        "tags": "Element,Person"
+      }
+    ],
+    "softwareSystems": [
+      {
+        "containers": [
+          {
+            "description": "Order UI",
+            "documentation": {},
+            "id": "3",
+            "name": "Web App",
+            "properties": {
+              "structurizr.dsl.identifier": "web"
+            },
+            "relationships": [
+              {
+                "description": "Submits orders",
+                "destinationId": "4",
+                "id": "9",
+                "sourceId": "3",
+                "tags": "Relationship",
+                "technology": "HTTPS"
+              }
+            ],
+            "tags": "Element,Container",
+            "technology": "React"
+          },
+          {
+            "description": "Order endpoints",
+            "documentation": {},
+            "id": "4",
+            "name": "Order API",
+            "properties": {
+              "structurizr.dsl.identifier": "api"
+            },
+            "relationships": [
+              {
+                "description": "Reads and writes",
+                "destinationId": "5",
+                "id": "10",
+                "sourceId": "4",
+                "tags": "Relationship",
+                "technology": "JDBC"
+              },
+              {
+                "description": "Requests payment",
+                "destinationId": "6",
+                "id": "11",
+                "sourceId": "4",
+                "tags": "Relationship",
+                "technology": "HTTPS"
+              }
+            ],
+            "tags": "Element,Container",
+            "technology": "Java"
+          },
+          {
+            "description": "Stores orders",
+            "documentation": {},
+            "id": "5",
+            "name": "Order Database",
+            "properties": {
+              "structurizr.dsl.identifier": "database"
+            },
+            "tags": "Element,Container,Database",
+            "technology": "PostgreSQL"
+          }
+        ],
+        "description": "Accepts and processes customer orders.",
+        "documentation": {},
+        "id": "2",
+        "name": "Order System",
+        "properties": {
+          "structurizr.dsl.identifier": "orderSystem"
+        },
+        "relationships": [
+          {
+            "description": "Requests payment",
+            "destinationId": "6",
+            "id": "12",
+            "linkedRelationshipId": "11",
+            "sourceId": "2",
+            "technology": "HTTPS"
+          }
+        ],
+        "tags": "Element,Software System"
+      },
+      {
+        "description": "Processes payments.",
+        "documentation": {},
+        "id": "6",
+        "name": "Payment Provider",
+        "properties": {
+          "structurizr.dsl.identifier": "payment"
+        },
+        "tags": "Element,Software System,External"
+      }
+    ]
+  },
+  "name": "Order service",
+  "properties": {
+    "structurizr.inspection.error": "5",
+    "structurizr.dsl": "d29ya3NwYWNlICJPcmRlciBzZXJ2aWNlIiAiT3JkZXIgc2VydmljZSBhcmNoaXRlY3R1cmUgZXhhbXBsZSIgewogIG1vZGVsIHsKICAgIGN1c3RvbWVyID0gcGVyc29uICJDdXN0b21lciIgIlBsYWNlcyBhbmQgdHJhY2tzIG9yZGVycy4iCiAgICBvcmRlclN5c3RlbSA9IHNvZnR3YXJlU3lzdGVtICJPcmRlciBTeXN0ZW0iICJBY2NlcHRzIGFuZCBwcm9jZXNzZXMgY3VzdG9tZXIgb3JkZXJzLiIgewogICAgICB3ZWIgPSBjb250YWluZXIgIldlYiBBcHAiICJPcmRlciBVSSIgIlJlYWN0IgogICAgICBhcGkgPSBjb250YWluZXIgIk9yZGVyIEFQSSIgIk9yZGVyIGVuZHBvaW50cyIgIkphdmEiCiAgICAgIGRhdGFiYXNlID0gY29udGFpbmVyICJPcmRlciBEYXRhYmFzZSIgIlN0b3JlcyBvcmRlcnMiICJQb3N0Z3JlU1FMIiB7CiAgICAgICAgdGFncyAiRGF0YWJhc2UiCiAgICAgIH0KICAgIH0KICAgIHBheW1lbnQgPSBzb2Z0d2FyZVN5c3RlbSAiUGF5bWVudCBQcm92aWRlciIgIlByb2Nlc3NlcyBwYXltZW50cy4iIHsKICAgICAgdGFncyAiRXh0ZXJuYWwiCiAgICB9CiAgICBjdXN0b21lciAtPiB3ZWIgIlVzZXMiCiAgICB3ZWIgLT4gYXBpICJTdWJtaXRzIG9yZGVycyIgIkhUVFBTIgogICAgYXBpIC0+IGRhdGFiYXNlICJSZWFkcyBhbmQgd3JpdGVzIiAiSkRCQyIKICAgIGFwaSAtPiBwYXltZW50ICJSZXF1ZXN0cyBwYXltZW50IiAiSFRUUFMiCiAgfQogIHZpZXdzIHsKICAgIHN5c3RlbUNvbnRleHQgb3JkZXJTeXN0ZW0gIk9yZGVyQ29udGV4dCIgIk9yZGVyIHNlcnZpY2UgY29udGV4dCIgewogICAgICBpbmNsdWRlICoKICAgICAgYXV0b0xheW91dAogICAgfQogICAgY29udGFpbmVyIG9yZGVyU3lzdGVtICJPcmRlckNvbnRhaW5lcnMiICJPcmRlciBzZXJ2aWNlIGNvbnRhaW5lcnMiIHsKICAgICAgaW5jbHVkZSAqCiAgICAgIGF1dG9MYXlvdXQKICAgIH0KICAgIGR5bmFtaWMgb3JkZXJTeXN0ZW0gIk9yZGVyRmxvdyIgIk9yZGVyIHJlcXVlc3QgZmxvdyIgewogICAgICBjdXN0b21lciAtPiB3ZWIgIlBsYWNlcyBhbiBvcmRlciIKICAgICAgd2ViIC0+IGFwaSAiU3VibWl0cyB0aGUgb3JkZXIiCiAgICAgIGFwaSAtPiBkYXRhYmFzZSAiU3RvcmVzIHRoZSBvcmRlciIKICAgICAgYXBpIC0+IHBheW1lbnQgIkF1dGhvcml6ZXMgcGF5bWVudCIKICAgICAgYXV0b0xheW91dAogICAgfQogICAgc3R5bGVzIHsKICAgICAgZWxlbWVudCAiUGVyc29uIiB7CiAgICAgICAgc2hhcGUgcGVyc29uCiAgICAgIH0KICAgICAgZWxlbWVudCAiRGF0YWJhc2UiIHsKICAgICAgICBzaGFwZSBjeWxpbmRlcgogICAgICAgIGJhY2tncm91bmQgIzQzOGRkNQogICAgICAgIGNvbG9yICNmZmZmZmYKICAgICAgfQogICAgICBlbGVtZW50ICJFeHRlcm5hbCIgewogICAgICAgIGJhY2tncm91bmQgIzk5OTk5OQogICAgICAgIGNvbG9yICNmZmZmZmYKICAgICAgfQogICAgfQogIH0KfQ==",
+    "structurizr.inspection.info": "0",
+    "structurizr.inspection.ignore": "0",
+    "structurizr.inspection.warning": "0"
+  },
+  "views": {
+    "configuration": {
+      "branding": {},
+      "styles": {
+        "elements": [
+          {
+            "background": "#438dd5",
+            "color": "#ffffff",
+            "shape": "Cylinder",
+            "tag": "Database"
+          },
+          {
+            "background": "#999999",
+            "color": "#ffffff",
+            "tag": "External"
+          },
+          {
+            "shape": "Person",
+            "tag": "Person"
+          }
+        ]
+      },
+      "terminology": {}
+    },
+    "containerViews": [
+      {
+        "description": "Order service containers",
+        "elements": [
+          {
+            "id": "1",
+            "x": -400,
+            "y": 0
+          },
+          {
+            "id": "3",
+            "x": -150,
+            "y": 0
+          },
+          {
+            "id": "4",
+            "x": 100,
+            "y": 0
+          },
+          {
+            "id": "5",
+            "x": 350,
+            "y": 0
+          },
+          {
+            "id": "6",
+            "x": 600,
+            "y": 0
+          }
+        ],
+        "externalSoftwareSystemBoundariesVisible": false,
+        "key": "OrderContainers",
+        "name": "Container View: Order System",
+        "order": 2,
+        "relationships": [
+          {
+            "id": "10"
+          },
+          {
+            "id": "11"
+          },
+          {
+            "id": "7"
+          },
+          {
+            "id": "9"
+          }
+        ],
+        "softwareSystemId": "2"
+      }
+    ],
+    "dynamicViews": [
+      {
+        "description": "Order request flow",
+        "elementId": "2",
+        "elements": [
+          {
+            "id": "1",
+            "x": -400,
+            "y": 0
+          },
+          {
+            "id": "3",
+            "x": -150,
+            "y": 0
+          },
+          {
+            "id": "4",
+            "x": 100,
+            "y": 0
+          },
+          {
+            "id": "5",
+            "x": 350,
+            "y": 0
+          },
+          {
+            "id": "6",
+            "x": 600,
+            "y": 0
+          }
+        ],
+        "externalBoundariesVisible": false,
+        "key": "OrderFlow",
+        "name": "Dynamic View: Order System",
+        "order": 3,
+        "relationships": [
+          {
+            "description": "Places an order",
+            "id": "7",
+            "order": "1",
+            "response": false
+          },
+          {
+            "description": "Submits the order",
+            "id": "9",
+            "order": "2",
+            "response": false
+          },
+          {
+            "description": "Stores the order",
+            "id": "10",
+            "order": "3",
+            "response": false
+          },
+          {
+            "description": "Authorizes payment",
+            "id": "11",
+            "order": "4",
+            "response": false
+          }
+        ]
+      }
+    ],
+    "systemContextViews": [
+      {
+        "description": "Order service context",
+        "elements": [
+          {
+            "id": "1",
+            "x": -300,
+            "y": 0
+          },
+          {
+            "id": "2",
+            "x": 0,
+            "y": 0
+          },
+          {
+            "id": "6",
+            "x": 300,
+            "y": 0
+          }
+        ],
+        "enterpriseBoundaryVisible": true,
+        "key": "OrderContext",
+        "name": "System Context View: Order System",
+        "order": 1,
+        "relationships": [
+          {
+            "id": "12"
+          },
+          {
+            "id": "8"
+          }
+        ],
+        "softwareSystemId": "2"
+      }
+    ]
+  }
+}
