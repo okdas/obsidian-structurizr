@@ -233,6 +233,7 @@ var StructurizrPlugin = class extends import_obsidian.Plugin {
     const box = document.createElement("div");
     box.className = "structurizr-embed";
     box.dataset.view = key;
+    box.style.setProperty("--structurizr-frame-height", `${this.settings.defaultHeight}px`);
     const toolbar = box.createDiv({ cls: "structurizr-toolbar" });
     let currentKey = key;
     const viewLabel = toolbar.createSpan({ text: `View: ${key}`, cls: "structurizr-view-key" });
@@ -249,7 +250,6 @@ var StructurizrPlugin = class extends import_obsidian.Plugin {
     frame.title = `Structurizr diagram ${key}`;
     frame.loading = "lazy";
     frame.allow = "fullscreen";
-    frame.style.height = `${this.settings.defaultHeight}px`;
     frame.setAttribute("scrolling", "no");
     const area = box.createDiv({ cls: "structurizr-frame-wrap" });
     area.append(frame);
@@ -259,7 +259,7 @@ var StructurizrPlugin = class extends import_obsidian.Plugin {
     if (workspace) this.workspaceInputs.add(workspace);
     this.activeFrames.add(frame);
     height.addEventListener("input", () => {
-      frame.style.height = `${height.value}px`;
+      box.style.setProperty("--structurizr-frame-height", `${height.value}px`);
     });
     const button = (label, action, title) => {
       const b = toolbar.createEl("button", { text: label });

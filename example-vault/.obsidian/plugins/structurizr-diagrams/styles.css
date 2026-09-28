@@ -19,7 +19,7 @@
 .structurizr-toolbar input[type="range"] { width: min(9em, 30%); }
 .structurizr-toolbar button { min-height: 2em; }
 .structurizr-frame-wrap { width: 100%; }
-.structurizr-frame-wrap iframe { display: block; width: 100%; border: 0; background: var(--background-primary); }
+.structurizr-frame-wrap iframe { display: block; width: 100%; height: var(--structurizr-frame-height, 480px); border: 0; background: var(--background-primary); }
 .structurizr-error { padding: 1em; color: var(--text-error); background: var(--background-secondary); }
 .structurizr-embed:fullscreen { background: var(--background-primary); overflow: auto; }
-.structurizr-embed:fullscreen iframe { height: calc(100vh - 3.5em) !important; }
+.structurizr-embed:fullscreen .structurizr-frame-wrap iframe { height: calc(100vh - 3.5em); }

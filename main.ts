@@ -157,19 +157,20 @@ export default class StructurizrPlugin extends Plugin {
 
   makeViewer(key: string, view?: EditorView, from = 0, to = 0, sourcePath?: string): HTMLElement {
     const box = document.createElement('div'); box.className = 'structurizr-embed'; box.dataset.view = key;
+    box.style.setProperty('--structurizr-frame-height', `${this.settings.defaultHeight}px`);
     const toolbar = box.createDiv({ cls: 'structurizr-toolbar' });
     let currentKey = key;
     const viewLabel = toolbar.createSpan({ text: `View: ${key}`, cls: 'structurizr-view-key' });
     const height = document.createElement('input'); height.type = 'range'; height.min = '240'; height.max = '900'; height.step = '20'; height.value = String(this.settings.defaultHeight); height.setAttribute('aria-label', 'Diagram height');
     toolbar.append(height);
-    const frame = document.createElement('iframe'); frame.id = `structurizr-${createHash('sha1').update(`${Date.now()}-${Math.random()}`).digest('hex').slice(0, 10)}`; frame.title = `Structurizr diagram ${key}`; frame.loading = 'lazy'; frame.allow = 'fullscreen'; frame.style.height = `${this.settings.defaultHeight}px`; frame.setAttribute('scrolling', 'no');
+    const frame = document.createElement('iframe'); frame.id = `structurizr-${createHash('sha1').update(`${Date.now()}-${Math.random()}`).digest('hex').slice(0, 10)}`; frame.title = `Structurizr diagram ${key}`; frame.loading = 'lazy'; frame.allow = 'fullscreen'; frame.setAttribute('scrolling', 'no');
     const area = box.createDiv({ cls: 'structurizr-frame-wrap' }); area.append(frame);
     const noteFile = sourcePath ? this.app.vault.getAbstractFileByPath(sourcePath) : this.app.workspace.getActiveFile();
     const workspace = this.workspaceFor(noteFile instanceof TFile ? noteFile : undefined);
     frame.dataset.workspace = workspace;
     if (workspace) this.workspaceInputs.add(workspace);
     this.activeFrames.add(frame);
-    height.addEventListener('input', () => { frame.style.height = `${height.value}px`; });
+    height.addEventListener('input', () => { box.style.setProperty('--structurizr-frame-height', `${height.value}px`); });
     const button = (label: string, action: () => void, title: string) => { const b = toolbar.createEl('button', { text: label }); b.type = 'button'; b.title = title; b.setAttribute('aria-label', title); b.addEventListener('click', action); };
     button('−', () => frame.contentWindow?.postMessage({ type: 'structurizr-zoom-out' }, '*'), 'Zoom out');
     button('+', () => frame.contentWindow?.postMessage({ type: 'structurizr-zoom-in' }, '*'), 'Zoom in');

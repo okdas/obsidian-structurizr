@@ -24,7 +24,7 @@ After the plugin appears in the Community plugins directory:
 
 ### Build from source
 
-Run `npm ci`, `npm test`, and `npm run build:release`. Copy the `installable/structurizr-diagrams` folder into the vault plugins folder. The release build also creates `installable/structurizr-diagrams.zip`. The plugin requires desktop Obsidian because it starts a local Node.js HTTP server and runs the Structurizr CLI.
+Run `npm ci`, `npm test`, and `npm run build:release`. Copy the `installable/structurizr-diagrams` folder into the vault plugins folder. The release build also creates `installable/structurizr-diagrams.zip`. Tagged GitHub releases build and attest the release assets from source. The plugin requires desktop Obsidian because it starts a local Node.js HTTP server and runs the Structurizr CLI.
 
 ## Select a workspace
 
@@ -67,6 +67,14 @@ The plugin watches the DSL and matching JSON file for changes. It re-exports cha
 The static export keeps zoom and scrolling, the diagram key, tooltips, perspectives, animation, descriptions, metadata, and quick navigation. Structurizr documents that static export removes documentation and decision records. Manual layouts require the workspace JSON file. Structurizr local itself does not support iframe or image embeds.
 
 The static export normally contacts `static.structurizr.com` to load optional themes. The plugin removes that remote theme loader from its temporary copy before serving the page. Built-in light and dark themes remain available. This keeps workspace data on the computer and prevents public theme requests.
+
+## Local access and permissions
+
+The plugin uses Node.js filesystem APIs to read the selected workspace and write exports under its generated folder. The Structurizr CLI can also read files that the workspace references.
+
+The plugin runs the configured CLI executable with `execFile` and an argument list. It does not pass those arguments through a shell. The CLI runs with the same operating-system permissions as Obsidian. Choose a trusted CLI executable and workspace.
+
+The local HTTP server binds only to `127.0.0.1`. It does not listen on an external network interface.
 
 ## Example vault
 
