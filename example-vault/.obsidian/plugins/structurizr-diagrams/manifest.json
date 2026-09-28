@@ -1,9 +1,9 @@
 {
   "id": "structurizr-diagrams",
   "name": "Structurizr Diagrams",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "minAppVersion": "1.5.0",
-  "description": "Embed interactive Structurizr views in Obsidian notes with local rendering.",
+  "description": "Embed interactive Structurizr views in notes with local rendering.",
   "author": "Dima K.",
   "authorUrl": "https://github.com/okdas",
   "helpUrl": "https://github.com/okdas/obsidian-structurizr/issues",

@@ -1,6 +1,6 @@
 {
   "name": "obsidian-structurizr",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Interactive local Structurizr diagrams in Obsidian notes",
   "main": "main.js",
   "scripts": { "build": "esbuild main.ts --bundle --external:obsidian --external:@codemirror/state --external:@codemirror/view --format=cjs --platform=node --target=es2020 --outfile=main.js", "build:release": "npm run build && mkdir -p installable/structurizr-diagrams && cp manifest.json main.js styles.css installable/structurizr-diagrams/ && cd installable && zip -qr structurizr-diagrams.zip structurizr-diagrams", "dev": "esbuild main.ts --bundle --external:obsidian --external:@codemirror/state --external:@codemirror/view --format=cjs --platform=node --target=es2020 --outfile=main.js --watch", "test": "node --test tests/export-smoke.cjs" },
